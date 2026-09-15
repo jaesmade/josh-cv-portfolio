@@ -120,8 +120,8 @@ const Home = () => {
         <div className="container navbar">
           <a
             className="nav-cta"
-            href="#home"
-            onClick={() => setIsMenuOpen(false)}
+            href="public/resume.pdf"
+            download="Jaesmade_Resume.pdf"
           >
             Download Resume
           </a>
@@ -542,6 +542,9 @@ const Home = () => {
               <span className="skill">PHP</span>
               <span className="skill">Python</span>
               <span className="skill">React</span>
+              <span className="skill">Next.js</span>
+              <span className="skill">Node.js</span>
+              <span className="skill">ASP.NET</span>
               <span className="skill">MySQL</span>
               <span className="skill">Git</span>
               <span className="skill">GitHub</span>
@@ -549,6 +552,7 @@ const Home = () => {
               <span className="skill">Arduino</span>
               <span className="skill">Machine Learning</span>
               <span className="skill">NLP</span>
+              <span className="skill">WordPress</span>
               <span className="skill">UI/UX Design</span>
             </div>
           </div>
@@ -571,7 +575,7 @@ const Home = () => {
               </a>
 
               <div className="socials">
-                <a href="#" className="social">
+                <a href="https://github.com/jaesmade" className="social">
                   {" "}
                   GitHub{" "}
                 </a>
@@ -581,7 +585,10 @@ const Home = () => {
                   LinkedIn{" "}
                 </a>
 
-                <a href="#" className="social">
+                <a
+                  href="https://www.facebook.com/joshandrew.esmade/"
+                  className="social"
+                >
                   {" "}
                   Facebook{" "}
                 </a>
