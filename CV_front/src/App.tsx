@@ -17,6 +17,8 @@ function Icon({ name }: { name: string }) {
     sun: "M12 1v2m0 18v2M1 12h2m18 0h2M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2M17 12a5 5 0 1 1-10 0 5 5 0 0 1 10 0Z",
     moon: "M21 13A9 9 0 0 1 11 3a9 9 0 1 0 10 10Z",
     arrow: "M5 19 19 5M5 5h14v14",
+    star: "m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3L10 14.2 5 9.3l6.9-1Z",
+    fork: "M6 3v4a3 3 0 0 0 3 3h7a3 3 0 0 1 3 3v4M6 17v4M3 4a3 3 0 1 0 6 0 3 3 0 0 0-6 0ZM16 18a3 3 0 1 0 6 0 3 3 0 0 0-6 0ZM3 19a3 3 0 1 0 6 0 3 3 0 0 0-6 0Z",
   };
   return (
     <svg
@@ -44,6 +46,7 @@ function Divider() {
 export default function App() {
   const [page, setPage] = useState<Page>(getPage);
   const [filter, setFilter] = useState("All");
+  const [openProject, setOpenProject] = useState<string | null>(null);
   const [theme, setTheme] = useState(() => {
     try {
       return localStorage.getItem("cv-theme") === "dark" ? "dark" : "light";
@@ -261,7 +264,10 @@ export default function App() {
                     <button
                       aria-pressed={filter === f}
                       className={filter === f ? "selected" : ""}
-                      onClick={() => setFilter(f)}
+                      onClick={() => {
+                        setFilter(f);
+                        setOpenProject(null);
+                      }}
                       key={f}
                     >
                       {f}
@@ -272,33 +278,59 @@ export default function App() {
                   {projects
                     .filter((p) => filter === "All" || p.category === filter)
                     .map((p) => (
-                      <article className="project-card" key={p.title}>
-                        <div className={`project-art ${p.color}`}>
-                          <span>{p.initials}</span>
-                          <small>{p.category}</small>
-                          <span className="art-star" aria-hidden="true">
-                            ✳
-                          </span>
-                        </div>
-                        <div className="project-copy">
-                          <h2>{p.title}</h2>
-                          <p>{p.description}</p>
-                          <div className="tags">
-                            {p.tech.map((t) => (
-                              <span key={t}>{t}</span>
-                            ))}
-                          </div>
-                          {p.url && (
-                            <a
-                              className="text-link"
-                              href={p.url}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
-                              View project ↗
-                            </a>
+                      <article
+                        className={`project-card${openProject === p.title ? " is-open" : ""}`}
+                        key={p.title}
+                      >
+                        <button
+                          className="project-art"
+                          type="button"
+                          aria-expanded={openProject === p.title}
+                          aria-label={`${openProject === p.title ? "Hide" : "Show"} details for ${p.title}`}
+                          onClick={() =>
+                            setOpenProject((current) =>
+                              current === p.title ? null : p.title,
+                            )
+                          }
+                        >
+                          <img
+                            src={`${import.meta.env.BASE_URL}${p.image}`}
+                            alt={p.imageAlt}
+                            width="1280"
+                            height="720"
+                            loading="lazy"
+                            decoding="async"
+                            onError={(event) => {
+                              const fallback = `${import.meta.env.BASE_URL}projects/placeholder.svg`;
+                              if (event.currentTarget.getAttribute("src") !== fallback) {
+                                event.currentTarget.src = fallback;
+                                event.currentTarget.alt = `Image unavailable for ${p.title}`;
+                              }
+                            }}
+                          />
+                          {(p.repository?.stars || p.repository?.forks) && (
+                            <span className="repo-stats">
+                              {p.repository.stars && (
+                                <span title="GitHub stars"><Icon name="star" />{p.repository.stars}</span>
+                              )}
+                              {p.repository.forks && (
+                                <span title="GitHub forks"><Icon name="fork" />{p.repository.forks}</span>
+                              )}
+                            </span>
                           )}
-                        </div>
+                          <span className="project-overlay">
+                            <span className="project-overlay-inner">
+                              <small className="project-category">{p.category}</small>
+                              <strong>{p.title}</strong>
+                              <span className="project-description">{p.description}</span>
+                            </span>
+                          </span>
+                        </button>
+                        {p.repository && (
+                          <a className="project-link" href={p.repository.url} target="_blank" rel="noreferrer">
+                            Open in GitHub <Icon name="arrow" />
+                          </a>
+                        )}
                       </article>
                     ))}
                 </div>

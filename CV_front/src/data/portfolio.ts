@@ -46,64 +46,72 @@ export const profile = {
 };
 type Project = {
   title: string;
-  initials: string;
+  image: string;
+  imageAlt: string;
   category: string;
-  color: string;
   description: string;
   tech: string[];
-  url?: string;
+  repository?: {
+    url: string;
+    stars?: string;
+    forks?: string;
+  };
 };
+// Image paths are relative to public/. Replace a placeholder file, or point image
+// to your own JPG/PNG/WebP (e.g. "projects/skilldis.webp") and update imageAlt.
+// Add an optional repository with an accurate URL and counts to show the GitHub
+// action and stat badges on the image, matching the DIMFLIX gallery behavior.
 export const projects: Project[] = [
   {
     title: "SkillDis",
-    initials: "SD",
+    image: "projects/skilldis.svg",
+    imageAlt: "Screenshot placeholder for SkillDis",
     category: "AI / Data",
-    color: "tone-cool",
     description:
       "An inclusive intelligent job matching system connecting PWD job seekers with opportunities based on skills, experience, and accessibility requirements.",
     tech: ["PHP", "MySQL", "JavaScript", "NLP"],
   },
   {
     title: "Hitovest",
-    initials: "HV",
+    image: "projects/hitovest.svg",
+    imageAlt: "Screenshot placeholder for Hitovest",
     category: "AI / Data",
-    color: "tone-soft",
     description:
       "A catfish farming management system combining biomass forecasting, farm information, water quality monitoring, and production tools.",
     tech: ["Python", "Decision Tree", "Sensors"],
   },
   {
     title: "Smart Irrigation System",
-    initials: "SI",
+    image: "projects/irrigation.svg",
+    imageAlt: "Screenshot placeholder for Smart Irrigation System",
     category: "Systems",
-    color: "tone-warm",
     description:
       "An automated irrigation solution using sensors and environmental monitoring to improve water management in agriculture.",
     tech: ["Arduino", "IoT", "C++"],
   },
   {
     title: "Municipal Siniloan Website",
-    initials: "MS",
+    image: "projects/siniloan.svg",
+    imageAlt: "Screenshot placeholder for Municipal Siniloan Website",
     category: "Web",
-    color: "tone-soft",
     description:
       "A responsive municipal website concept making local information, tourism, and community resources easier to access.",
     tech: ["React", "JavaScript", "CSS"],
   },
   {
     title: "BAO Express",
-    initials: "BAO",
+    image: "projects/bao-express.svg",
+    imageAlt: "Screenshot placeholder for BAO Express",
     category: "Web",
-    color: "tone-warm",
     description:
       "An e-commerce interface concept focused on clear navigation, product discovery, and user-friendly authentication.",
     tech: ["HTML", "CSS", "JavaScript", "UI/UX"],
   },
   {
     title: "Attendance & Monitoring",
-    initials: "AM",
+    image: "projects/attendance.svg",
+    imageAlt: "Screenshot placeholder for Attendance and Monitoring",
     category: "Systems",
-    color: "tone-cool",
     description:
       "An information system concept for recording, organizing, and monitoring attendance data.",
     tech: ["PHP", "MySQL", "Bootstrap"],

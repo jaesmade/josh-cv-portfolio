@@ -19,7 +19,8 @@ Upload the contents of `dist/` to any static host. Hash navigation (`#about`, `#
 
 - `src/data/portfolio.ts`: name, introduction, portrait, social links, education, skills, and projects. Current content preserves the original CV as an example.
 - Replace `src/assets/me.png` or change the photo import in the data file.
-- Set an optional `url` on a project to show its public link. Projects without URLs display as informational cards.
+- Projects use an image gallery like the DIMFLIX portfolio: hover or focus a tile to see its summary, or tap it to toggle details. Set an optional `repository: { url, stars, forks }` in `src/data/portfolio.ts` to show a GitHub action and stat badges. Add only real links and counts. The gallery works entirely from local data and does not call GitHub.
+- Project image placeholders live in `public/projects/`. Add your system screenshots there, then update each project's `image` and `imageAlt` in `src/data/portfolio.ts` (for example, `image: "projects/skilldis.webp"`). Paths are relative to `public/`, without a leading slash. Tiles display at a 16:10 ratio; use that ratio or expect some cropping. Missing files show a neutral fallback.
 - `src/index.css`: theme colors, typography, responsive layout, and print styles.
 - Color roles live in the root theme tokens (`--accent`, `--tone-warm`, `--tone-cool`, and `--tone-soft`). Spacing uses a 4px scale with shared page gutters and content widths; change these tokens to adjust the whole template.
 - `index.html`: browser title, description, and favicon for your version.
