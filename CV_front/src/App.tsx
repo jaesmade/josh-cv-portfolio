@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { profile, projects } from "./data/portfolio";
 import "./index.css";
-const pages = ["home", "about", "portfolio", "resume", "contact"] as const;
+const pages = ["home", "about", "portfolio", "contact"] as const;
 type Page = (typeof pages)[number];
 const getPage = (): Page => {
   const hash = location.hash.slice(1);
+  if (hash === "resume") return "about";
   return pages.includes(hash as Page) ? (hash as Page) : "home";
 };
 function Icon({ name }: { name: string }) {
@@ -107,7 +108,21 @@ export default function App() {
                 {profile.tagline}
               </div>
               <Divider />
-              <nav className="card-nav" aria-label="Explore portfolio">
+              <div className="social-row">
+                <span>FIND ME ELSEWHERE</span>
+                {profile.socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.url}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    {s.label} ↗
+                  </a>
+                ))}
+              </div>
+            </div>
+            <nav className="card-nav" aria-label="Explore portfolio">
                 {[
                   {
                     id: "about",
@@ -143,59 +158,7 @@ export default function App() {
                     <Icon name="arrow" />
                   </a>
                 ))}
-              </nav>
-              <Divider />
-              <div className="social-row">
-                <span>FIND ME ELSEWHERE</span>
-                {profile.socials.map((s) => (
-                  <a
-                    key={s.label}
-                    href={s.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {s.label} ↗
-                  </a>
-                ))}
-              </div>
-            </div>
-            <aside className="portrait-side">
-              <div className="portrait-frame">
-                <div className="photo-top">
-                  <span>ME.JPG</span>
-                  <span>─ &nbsp; □ &nbsp; ×</span>
-                </div>
-                <div className="portrait-image">
-                  <img
-                    src={profile.photo}
-                    alt={`Portrait of ${profile.name}`}
-                    width="1112"
-                    height="1414"
-                  />
-                  <span className="photo-sticker">
-                    always
-                    <br />
-                    creating ✦
-                  </span>
-                </div>
-                <div className="photo-caption">
-                  <span>
-                    <i /> {profile.location}
-                  </span>
-                  <span>01 / 01</span>
-                </div>
-              </div>
-              <span className="orbit-star" aria-hidden="true">
-                ✳
-              </span>
-              <a className="resume-button" href="#resume">
-                <Icon name="resume" />
-                View my résumé <span>↗</span>
-              </a>
-              <p className="portrait-note">
-                A curious mind. A work in progress.
-              </p>
-            </aside>
+            </nav>
           </section>
         ) : (
           <section className="inner-page" key={page}>
@@ -207,7 +170,6 @@ export default function App() {
                 {
                   about: "Behind the pixels.",
                   portfolio: "Things I’ve built.",
-                  resume: "My résumé.",
                   contact: "Let’s make something.",
                   home: "",
                 }[page]
@@ -222,9 +184,19 @@ export default function App() {
                     {profile.about.map((p) => (
                       <p key={p}>{p}</p>
                     ))}
-                    <a className="text-link" href="#portfolio">
-                      Explore my projects ↗
-                    </a>
+                    <div className="about-actions">
+                      <a
+                        className="primary-button"
+                        href={`${import.meta.env.BASE_URL}Josh-Andrew-Esmade-Resume.pdf`}
+                        download="Josh-Andrew-Esmade-Resume.pdf"
+                      >
+                        <Icon name="resume" />
+                        Download résumé (PDF)
+                      </a>
+                      <a className="text-link" href="#portfolio">
+                        Explore my projects ↗
+                      </a>
+                    </div>
                   </div>
                   <img
                     className="about-photo"
@@ -327,45 +299,6 @@ export default function App() {
                       </article>
                     ))}
                 </div>
-              </>
-            )}
-            {page === "resume" && (
-              <>
-                <div className="resume-header">
-                  <div>
-                    <h2>{profile.name}</h2>
-                    <p>
-                      {profile.role} · {profile.location}
-                    </p>
-                    <a href={`mailto:${profile.email}`}>{profile.email}</a>
-                  </div>
-                  <button
-                    className="primary-button print-button"
-                    onClick={() => window.print()}
-                  >
-                    Print / Save PDF ↗
-                  </button>
-                </div>
-                <h2 className="section-heading">Profile</h2>
-                <p>{profile.about[0]}</p>
-                <h2 className="section-heading">Education</h2>
-                {profile.education.map((e) => (
-                  <div className="resume-entry" key={e.degree}>
-                    <h3>{e.degree}</h3>
-                    <p>{e.school}</p>
-                    <p>{e.detail}</p>
-                  </div>
-                ))}
-                <h2 className="section-heading">Selected projects</h2>
-                {projects.slice(0, 3).map((p) => (
-                  <div className="resume-entry" key={p.title}>
-                    <h3>{p.title}</h3>
-                    <p>{p.description}</p>
-                    <small>{p.tech.join(" · ")}</small>
-                  </div>
-                ))}
-                <h2 className="section-heading">Skills</h2>
-                <p>{profile.skills.join(" · ")}</p>
               </>
             )}
             {page === "contact" && (
