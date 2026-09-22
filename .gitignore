@@ -1,0 +1,12 @@
+# Local Impeccable skill installations and generated agents
+/.agents/skills/impeccable/
+/.claude/skills/impeccable/
+/.cursor/skills/impeccable/
+/.claude/agents/impeccable-*.md
+/.cursor/agents/impeccable-*.md
+/.impeccable/
+
+# Local hook configuration installed by Impeccable
+/.codex/hooks.json
+/.cursor/hooks.json
+/.claude/settings.local.json

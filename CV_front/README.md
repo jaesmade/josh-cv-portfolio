@@ -1,6 +1,6 @@
 # Static CV / portfolio template
 
-A React + TypeScript + Vite website inspired by the DIMFLIX reference: pixel fonts, pastel cards, a framed portrait, and a floating navigation dock. No server, database, API keys, or remote font requests are required.
+A React + TypeScript + Vite website inspired by the DIMFLIX reference: pixel fonts, an ivory/teal/clay palette, a framed portrait, and a floating navigation dock. A coordinated evergreen dark theme is included. No server, database, API keys, or remote font requests are required.
 
 ## Run
 
@@ -21,6 +21,7 @@ Upload the contents of `dist/` to any static host. Hash navigation (`#about`, `#
 - Replace `src/assets/me.png` or change the photo import in the data file.
 - Set an optional `url` on a project to show its public link. Projects without URLs display as informational cards.
 - `src/index.css`: theme colors, typography, responsive layout, and print styles.
+- Color roles live in the root theme tokens (`--accent`, `--tone-warm`, `--tone-cool`, and `--tone-soft`). Spacing uses a 4px scale with shared page gutters and content widths; change these tokens to adjust the whole template.
 - `index.html`: browser title, description, and favicon for your version.
 - The résumé is generated from the same profile data. Use **Print / Save PDF** on the résumé page to export it through your browser.
 

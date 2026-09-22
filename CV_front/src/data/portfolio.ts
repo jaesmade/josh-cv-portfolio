@@ -58,7 +58,7 @@ export const projects: Project[] = [
     title: "SkillDis",
     initials: "SD",
     category: "AI / Data",
-    color: "lavender",
+    color: "tone-cool",
     description:
       "An inclusive intelligent job matching system connecting PWD job seekers with opportunities based on skills, experience, and accessibility requirements.",
     tech: ["PHP", "MySQL", "JavaScript", "NLP"],
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     title: "Hitovest",
     initials: "HV",
     category: "AI / Data",
-    color: "mint",
+    color: "tone-soft",
     description:
       "A catfish farming management system combining biomass forecasting, farm information, water quality monitoring, and production tools.",
     tech: ["Python", "Decision Tree", "Sensors"],
@@ -76,7 +76,7 @@ export const projects: Project[] = [
     title: "Smart Irrigation System",
     initials: "SI",
     category: "Systems",
-    color: "peach",
+    color: "tone-warm",
     description:
       "An automated irrigation solution using sensors and environmental monitoring to improve water management in agriculture.",
     tech: ["Arduino", "IoT", "C++"],
@@ -85,7 +85,7 @@ export const projects: Project[] = [
     title: "Municipal Siniloan Website",
     initials: "MS",
     category: "Web",
-    color: "mint",
+    color: "tone-soft",
     description:
       "A responsive municipal website concept making local information, tourism, and community resources easier to access.",
     tech: ["React", "JavaScript", "CSS"],
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     title: "BAO Express",
     initials: "BAO",
     category: "Web",
-    color: "peach",
+    color: "tone-warm",
     description:
       "An e-commerce interface concept focused on clear navigation, product discovery, and user-friendly authentication.",
     tech: ["HTML", "CSS", "JavaScript", "UI/UX"],
@@ -103,7 +103,7 @@ export const projects: Project[] = [
     title: "Attendance & Monitoring",
     initials: "AM",
     category: "Systems",
-    color: "lavender",
+    color: "tone-cool",
     description:
       "An information system concept for recording, organizing, and monitoring attendance data.",
     tech: ["PHP", "MySQL", "Bootstrap"],

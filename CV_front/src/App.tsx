@@ -114,19 +114,19 @@ export default function App() {
                     id: "about",
                     title: "About me",
                     text: "The person behind the pixels.",
-                    color: "peach",
+                    color: "tone-warm",
                   },
                   {
                     id: "portfolio",
                     title: "My projects",
                     text: "Ideas turned into things that work.",
-                    color: "lavender",
+                    color: "tone-cool",
                   },
                   {
                     id: "contact",
                     title: "Let’s connect",
                     text: "Good things start with a hello.",
-                    color: "mint",
+                    color: "tone-soft",
                   },
                 ].map((item) => (
                   <a
@@ -244,7 +244,7 @@ export default function App() {
                 <div className="skills">
                   {profile.skills.map((s, i) => (
                     <span
-                      className={["peach", "lavender", "mint"][i % 3]}
+                      className={["tone-warm", "tone-cool", "tone-soft"][i % 3]}
                       key={s}
                     >
                       {s}
