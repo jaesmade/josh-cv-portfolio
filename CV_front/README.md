@@ -1,35 +1,38 @@
-# React + TypeScript + Vite
+# Static CV / portfolio template
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A React + TypeScript + Vite website inspired by the DIMFLIX reference: pixel fonts, pastel cards, a framed portrait, and a floating navigation dock. No server, database, API keys, or remote font requests are required.
 
-Currently, two official plugins are available:
+## Run
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Use Node.js 22.12+ or 24 LTS.
 
-## React Compiler
-
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
-
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```sh
+npm install
+npm run dev
+npm run build
+npm run preview
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Upload the contents of `dist/` to any static host. Hash navigation (`#about`, `#portfolio`, `#resume`, `#contact`) works without server rewrite rules. Vite uses a relative base so the build also supports repository subpaths. Serve the site over HTTP; do not open index.html via file://.
+
+## Personalize
+
+- `src/data/portfolio.ts`: name, introduction, portrait, social links, education, skills, and projects. Current content preserves the original CV as an example.
+- Replace `src/assets/me.png` or change the photo import in the data file.
+- Set an optional `url` on a project to show its public link. Projects without URLs display as informational cards.
+- `src/index.css`: theme colors, typography, responsive layout, and print styles.
+- `index.html`: browser title, description, and favicon for your version.
+- The résumé is generated from the same profile data. Use **Print / Save PDF** on the résumé page to export it through your browser.
+
+Light/dark preference is stored locally when browser storage is available. Project filtering runs entirely in the browser. Contact opens the visitor’s email app.
+
+## Assets and credit
+
+Design inspiration: the supplied `dimflix.github.io-main` repository. The local `PressStart2P-Regular.woff` and `aldrichrusbydaymarius.woff` font files were copied from its `src/assets/fonts` directory. The portrait and CV content come from this project's original files. No reference-author biography, résumé, project claims, or API integrations are included. Preserve applicable font licenses when redistributing; the supplied reference did not include font license files.
+
+## Checks
+
+```sh
+npm run build
+npm run lint
+```
