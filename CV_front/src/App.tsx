@@ -173,6 +173,8 @@ export default function App() {
                   <img
                     src={profile.photo}
                     alt={`Portrait of ${profile.name}`}
+                    width="1112"
+                    height="1414"
                   />
                   <span className="photo-sticker">
                     always
@@ -204,15 +206,6 @@ export default function App() {
             <a className="back-link" href="#home">
               ← Back to home
             </a>
-            <div className="eyebrow">
-              {page === "about"
-                ? "A LITTLE INTRODUCTION"
-                : page === "portfolio"
-                  ? "FROM IDEA TO REALITY"
-                  : page === "resume"
-                    ? "EXPERIENCE & EDUCATION"
-                    : "SAY HELLO"}
-            </div>
             <h1>
               {
                 {
@@ -228,11 +221,6 @@ export default function App() {
             {page === "about" && (
               <>
                 <div className="about-grid">
-                  <img
-                    className="about-photo"
-                    src={profile.photo}
-                    alt={profile.name}
-                  />
                   <div>
                     <h2>{profile.name}</h2>
                     {profile.about.map((p) => (
@@ -242,6 +230,15 @@ export default function App() {
                       Explore my projects ↗
                     </a>
                   </div>
+                  <img
+                    className="about-photo"
+                    src={profile.photo}
+                    alt={`Portrait of ${profile.name}`}
+                    width="1112"
+                    height="1414"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
                 <h2 className="section-heading">My toolbox</h2>
                 <div className="skills">
@@ -377,10 +374,6 @@ export default function App() {
             )}
             {page === "contact" && (
               <div className="contact-panel">
-                <span className="contact-spark" aria-hidden="true">
-                  ✳
-                </span>
-                <h2>Have an idea in mind?</h2>
                 <p>
                   Have a project, an opportunity, or just something interesting
                   to share? I’d love to hear from you.
