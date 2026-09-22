@@ -48,11 +48,7 @@ export default function App() {
   const [filter, setFilter] = useState("All");
   const [openProject, setOpenProject] = useState<string | null>(null);
   const [theme, setTheme] = useState(() => {
-    try {
-      return localStorage.getItem("cv-theme") === "dark" ? "dark" : "light";
-    } catch {
-      return "light";
-    }
+    return document.documentElement.dataset.theme === "light" ? "light" : "dark";
   });
   useEffect(() => {
     const update = () => {

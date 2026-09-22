@@ -1,7 +1,16 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      try {
+        if (localStorage.getItem("cv-theme") === "light") {
+          document.documentElement.dataset.theme = "light";
+        }
+      } catch {
+        // The dark default works even when storage is unavailable.
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="./port.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Josh Andrew Esmade — developer portfolio, selected projects, skills, and résumé." />
